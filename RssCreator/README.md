@@ -1,0 +1,4 @@
+rssCreator
+==========
+
+PHP RSS Creator
