@@ -20,13 +20,16 @@ class JsonRss{
     }
 
     public function prepareRss(){
-        foreach ($this->jsonstrs as $jsonstr){
+        foreach ($this->jsonstrs as $jsonobj){
+            $jsonarray = (array)$jsonobj;
             $rss_item = array();
-            foreach ($jsonstr as $key => $value){
-                foreach ($this->jrmap as $rss => $json){
-                    if ($key == $json){
-                        $rss_item[$rss] = $value;
+            foreach ($this->jrmap as $rss => $json){
+                if (is_array($json)){
+                    foreach ($json as $subrss => $subjson){
+                        $rss_item[$rss][$subrss] = $jsonarray[$subjson];
                     }
+                } else {
+                    $rss_item[$rss] = $jsonarray[$json];
                 }
             }
             $this->rss_items[] = $rss_item;

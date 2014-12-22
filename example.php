@@ -18,12 +18,16 @@ $result=curl_exec($ch);
 curl_close($ch);
 
 $jsonstrs = json_decode($result);
-
 $mapping = array(
 //rss -- json
 'title' => 'title',
 'link' => 'url',
 'description' => 'title',
+'image' => array(
+'url' => 'image_large_url',
+'title' => 'meta_title',
+'link' => 'url',
+)
 );
 
 $rssconfig = array(

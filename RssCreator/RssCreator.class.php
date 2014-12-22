@@ -27,9 +27,16 @@ class RssCreator {
         foreach ($this->rss_items as $rss_item) {
             $rpt = $currTimeStr;
             $xml .= '<item>' . "\n";
-            $xml .= '<title>' . htmlspecialchars(html_entity_decode($rss_item['title'])) . '</title>' . "\n";
+            $xml .= '<title><![CDATA[' . htmlspecialchars(html_entity_decode($rss_item['title'])) . ']]></title>' . "\n";
             $xml .= '<link>' . $rss_item['link'] . '</link>' . "\n";
             $xml .= '<description><![CDATA[' . $rss_item['description'] . ']]></description>' . "\n";
+            if (isset($rss_item['image'])){
+               $xml .= '<image>' . "\n";
+               $xml .= '<url>' . $rss_item['image']['url'] . '</url>' . "\n";    //Specifies the URL to the image
+               $xml .= '<title><![CDATA[' . $rss_item['image']['title'] . ']]></title>' . "\n";
+               $xml .= '<link>' . $rss_item['image']['link'] . '</link>' . "\n";   //Defines the hyperlink to the website that offers the channel
+               $xml .= '</image>' . "\n";
+            }
             if (isset($rss_item['published'])){
                 $rpt = $rss_item['published'];
             }
