@@ -28,7 +28,7 @@ $jsonarray = (array)$json;
 $outputjson = array();
 $outputjson['title'] = $jsonarray['title'];
 $outputjson['url'] = $jsonarray['url'];
-$outputjson['description'] = '<img src="' . $jsonarray['image_large_url'] . '"><br>' . $jsonarray['title'];
+$outputjson['description'] = '<img src="' . $jsonarray['image_large_url'] . '"><br><div style="display:none">' . $jsonarray['title'] . '</div>';
 $outputjsons[] = json_decode(json_encode($outputjson));
 }
 return $outputjsons;
